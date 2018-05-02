@@ -1,28 +1,48 @@
 import os
 import image
 
-os.system('clear')
-menu = 0
-print('--------------------------------------')
-print('  Big Computational Image Processing  ')
-print('--------------------------------------')
-print('1. Load Images')
-print('2. Basic Function')
-print('3. Filter')
-print('4. Exit')
-print('--------------------------------------')
-print('Choose menu : ', end='')
-menu = int(input())
+def title_bar():
+    """Return title bar
+    """
 
-if (menu == 1):
-    print('Please input the image filename and extensions : ', end='')
-    filename = input()
-    img = image.read_images(filename)
-    image.show_images(img)
+    os.system('clear')
+
+    print("--------------------------------------")
+    print("  Big Computational Image Processing  ")
+    print("--------------------------------------")
+
+def user_menu():
+    """Display user menu
     
-elif (menu == 2):
-    print('Menu 2')
-elif (menu == 3):
-    print('Menu 3')
-else:
-    print('Bye.. Bye..')
+    Returns:
+        integer -- Return value to choose menu
+    """
+
+    print("1. Load Images")
+    print("2. Basic Function")
+    print("3. Filter")
+    print("4. Exit")
+
+    return int(input("Choose menu : "))
+
+
+## MAIN PROGRAM ##
+choice = 0
+# Show title bar
+title_bar()
+
+while(choice != 4):
+    choice = user_menu()
+
+    # Respond user choice
+    title_bar()
+    if (choice == 1):
+        print("Hello")
+    elif (choice == 2):
+        print("Hai")
+    elif (choice == 3):
+        print("Okeey")
+    elif (choice == 4):
+        print("Oops..")
+    else:
+        print("I didn't understand with that choice")
