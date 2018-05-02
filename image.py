@@ -32,6 +32,9 @@ def im2gray(image):
     
     Returns:
         N-Dimensional Matrix -- Return new image in grayscale color.
+    
+    To do :
+        - Make this function run parallel
     """
 
     gray = sk.color.rgb2gray(image)
@@ -45,7 +48,10 @@ def imrotate(image, angle):
         angle {integer} -- Rotation angle value in degrees
     
     Returns:
-        [type] -- [description]
+        N-Dimensional Matrix -- Return new image in specified rotation
+
+    To do:
+        - Make this function run parallel
     """
 
     rotate = sk.transform.rotate(image, angle)
