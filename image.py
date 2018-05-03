@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import scipy
 import skimage as sk
 from skimage import io
 
@@ -56,3 +57,19 @@ def imrotate(image, angle):
 
     rotate = sk.transform.rotate(image, angle)
     return rotate
+
+def imblur(image, s=None):
+    """Image blur in specify sigma
+    
+    Arguments:
+        image {N-Dimension Matrix} -- Variable that contains the N-Dimensional Matrix of image.
+    
+    Keyword Arguments:
+        s {integer} -- Sigma value of blur kernel (default: {None})
+    
+    Returns:
+        N-Dimensional Matrix -- Return new blured image
+    """
+
+    blur = scipy.ndimage.gaussian_filter(image, sigma=s)
+    return blur
