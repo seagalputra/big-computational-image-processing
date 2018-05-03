@@ -1,16 +1,17 @@
-from mpi4py import MPI
 import numpy as np
+import image
+import matplotlib.pyplot as plt
+import multiprocessing
+import skimage
+from skimage import io
 
-comm = MPI.COMM_WORLD
-size = comm.Get_size()
-rank = comm.Get_rank()
+img = io.imread('gambar.jpg')
 
-numDataPerRank = 10
-data = None
-if (rank == 0):
-    data = np.linspace(1, size*numDataPerRank, numDataPerRank*size)
+p1 = multiprocessing.Process(target = image.im2gray, args = (img,))
+p2 = multiprocessing.Process(target = image.imrotate, args = (img, 90))
 
-recvbuf = np.empty(numDataPerRank, dtype='d')
-comm.Scatter(data, recvbuf, root=0)
+p1.start()
+p2.start()
 
-print('Rank: ',rank, ', recvbuf received: ', recvbuf)
+p1.join()
+p2.join()

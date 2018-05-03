@@ -1,8 +1,9 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import scipy
+from scipy import ndimage
 import skimage as sk
 from skimage import io
+from skimage import transform
 
 def read_images(filename):
     """Function to read image from file.
@@ -39,7 +40,8 @@ def im2gray(image):
     """
 
     gray = sk.color.rgb2gray(image)
-    return gray
+    plt.imshow(gray, cmap='gray')
+    return plt.show()
 
 def imrotate(image, angle):
     """Rotate image in specify angle
@@ -55,8 +57,9 @@ def imrotate(image, angle):
         - Make this function run parallel
     """
 
-    rotate = sk.transform.rotate(image, angle)
-    return rotate
+    rotate = transform.rotate(image, angle)
+    plt.imshow(rotate)
+    return plt.show()
 
 def imblur(image, s=None):
     """Image blur in specify sigma
@@ -71,5 +74,5 @@ def imblur(image, s=None):
         N-Dimensional Matrix -- Return new blured image
     """
 
-    blur = scipy.ndimage.gaussian_filter(image, sigma=s)
+    blur = ndimage.gaussian_filter(image, sigma=s)
     return blur
