@@ -30,7 +30,8 @@ def imblur(date, host_id, s):
     print('Image blur success')
     io.imsave(date+host_id+'.jpg', blur)
 
-# Main Server Program    
+# Main Server Program
+# Change the ip address and port if necessary    
 server = SimpleXMLRPCServer(('localhost', 8000), allow_none=True)
 print('Listening on port 8000')
 
