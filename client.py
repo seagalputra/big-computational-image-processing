@@ -14,7 +14,7 @@ def title_bar(host_id):
 
 def load_images():
     print("Please load image first before going to next menu..")
-    filename = input('Input your image filename (with file extensions) : ')
+    filename = input('Input your image filename (include file extensions) : ')
     # For uploading image to server
     with open(filename, 'rb') as handle:
         data = xmlrpc.client.Binary(handle.read())
@@ -46,19 +46,45 @@ while(choice != '5'):
     choice = user_menu()
     # Respond user choice
     if (choice == '1'):
+        title_bar(host_id)
         degree = int(input("Please input your angle in degree : "))
-        # Run image rotate function in the server
-        proxy.imrotate(date, host_id, degree)
+        # Run image rotation function in server
+        try:
+            proxy.imrotate(date, host_id, degree)
+            print("Image rotation success!")
+        except:
+            print("Image rotation failed!")
     elif (choice == '2'):
-        kernel = int(input("Please input the blur intensity"))
+        title_bar(host_id)
+        kernel = int(input("Please input the blur intensity : "))
         # Run image blur function in server
-        proxy.imblur(date, host_id, kernel)
+        try:
+            proxy.imblur(date, host_id, kernel)
+            print("Image successfully blurred!")
+        except:
+            # Catch if image blur function is failed
+            print("Image blurring is failed!")
     elif (choice == '3'):
-        # Code here
-        print('Converted to grayscale')
+        title_bar(host_id)
+        # Convert image from rgb to grayscale in server
+        try:
+            proxy.im2gray(date, host_id)
+            print("Color successfully convert in grayscale!")
+        except:
+            # Catch if color conversion is failed
+            print("Color conversion is failed!")
     elif (choice == '4'):
-        handle = open("new_image.jpg", "wb")
-        handle.write(proxy.image_download(date, host_id).data)
-        handle.close()
+        title_bar(host_id)
+        # Download image from server
+        new_filename = input("Please write the new image filename (include file extensions) : ")
+        try:
+            handle = open(new_filename, "wb")
+            handle.write(proxy.image_download(date, host_id).data)
+            handle.close()
+            print("Image successfully downloaded!")
+        except:
+            # Catch if download function is failed
+            print("Image download failed!")
     elif (choice == '5'):
+        title_bar(host_id)
         print("Thank you for using this application")

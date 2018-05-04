@@ -30,6 +30,12 @@ def imblur(date, host_id, s):
     print('Image blur success')
     io.imsave(date+host_id+'.jpg', blur)
 
+def im2gray(date, host_id):
+    image = io.imread(date+host_id+'.jpg')
+    gray = color.rgb2gray(image)
+    print('Image successfuly convert to grayscale')
+    io.imsave(date+host_id+'.jpg', gray)
+
 # Main Server Program
 # Change the ip address and port if necessary    
 server = SimpleXMLRPCServer(('localhost', 8000), allow_none=True)
@@ -39,4 +45,5 @@ server.register_function(image_upload, 'image_upload')
 server.register_function(image_download, 'image_download')
 server.register_function(imrotate, 'imrotate')
 server.register_function(imblur, 'imblur')
+server.register_function(im2gray, 'im2gray')
 server.serve_forever()
