@@ -8,6 +8,8 @@ def title_bar(host_id):
     os.system('clear')
 
     print("--------------------------------------")
+    print("  Big Computational Image Processing  ")
+    print("--------------------------------------")
     print("Hello ",host_id)
 
 def load_images():
