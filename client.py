@@ -3,6 +3,7 @@ import xmlrpc.client
 import socket
 import datetime
 import os
+import os.path
 
 def title_bar(host_id):
     
@@ -48,7 +49,7 @@ choice = 0
 title_bar(host_id)
 load_images()
 
-while(choice != '6'):
+while(choice != '7'):
     choice = user_menu()
     # Respond user choice
     if (choice == '1'):
@@ -103,9 +104,13 @@ while(choice != '6'):
             print("Image download failed!")
     elif (choice == '6'):
         # Delete files in server-side
-        proxy.remove_files(date, host_id)
+        try:
+            proxy.remove_files(date, host_id);
+        except:
+            print("Gambar gagal dihapus!")
     elif (choice == '7'):
         title_bar(host_id)
         print("Thank you for using this application")
         # Delete files after client exit the program
-        proxy.remove_files(date, host_id)
+        if (os.path.isfile(date+host_id+'.jpg')):
+            proxy.remove_files(date, host_id)
