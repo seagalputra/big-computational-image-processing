@@ -30,7 +30,8 @@ def user_menu():
     print("3. Convert image to grayscale")
     print("4. Convert image to binary")
     print("5. Download the image file")
-    print("6. Exit")
+    print("6. Remove image")
+    print("7. Exit")
 
     return input("Choose menu : ")
 
@@ -101,6 +102,9 @@ while(choice != '6'):
             # Catch if download function is failed
             print("Image download failed!")
     elif (choice == '6'):
+        # Delete files in server-side
+        proxy.remove_files(date, host_id)
+    elif (choice == '7'):
         title_bar(host_id)
         print("Thank you for using this application")
         # Delete files after client exit the program
