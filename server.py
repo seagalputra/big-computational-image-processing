@@ -1,3 +1,19 @@
+"""
+Tugas Besar Sistem Parallel dan Terdistribusi
+"Big Computational Image Processing"
+
+Amelia Anis Miranda - 1301154547
+Dwiferdio Seagal Putra - 1301154323
+Defa Eka Ardio - 1301154281
+Fauzi Kurniawan - 1301154267
+
+References :
+    - https://docs.python.org/2/library/os.html (os - Miscellaneous operating system interfaces)
+    - http://www.scipy-lectures.org/packages/scikit-image/index.html (Scikit-image: Image Processing)
+    - https://docs.python.org/2/library/simplexmlrpcserver.html (SimpleXMLRPCServer - Basic XML-RPC server)
+    - https://docs.python.org/3/library/xmlrpc.html (xmlrpc - XMLRPC server and client modules)
+"""
+
 from xmlrpc.server import SimpleXMLRPCServer
 import xmlrpc.client
 import socket
