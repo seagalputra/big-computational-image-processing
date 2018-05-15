@@ -1,6 +1,7 @@
 from xmlrpc.server import SimpleXMLRPCServer
 import xmlrpc.client
 import socket
+import os
 from skimage import io
 from skimage import transform
 from skimage import color
@@ -95,6 +96,16 @@ def imthresh(date, host_id):
     print("Image successfully threshold!")
     io.imsave(date+host_id+'.jpg', binary)
 
+def remove_files(date, host_id):
+    """Function to remove image files
+    
+    Arguments:
+        date {String} -- Date from computer's client
+        host_id {String} -- Host id from computer's client
+    """
+
+    os.remove(date+host_id+'.jpg')
+
 # Main Server Program
 # Change the ip address and port if necessary    
 server = SimpleXMLRPCServer(('localhost', 8000), allow_none=True)
@@ -106,4 +117,5 @@ server.register_function(imrotate, 'imrotate')
 server.register_function(imblur, 'imblur')
 server.register_function(im2gray, 'im2gray')
 server.register_function(imthresh, 'imthresh')
+server.register_function(remove_files, 'remove_files')
 server.serve_forever()

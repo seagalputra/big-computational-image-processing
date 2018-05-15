@@ -103,3 +103,5 @@ while(choice != '6'):
     elif (choice == '6'):
         title_bar(host_id)
         print("Thank you for using this application")
+        # Delete files after client exit the program
+        proxy.remove_files(date, host_id)
