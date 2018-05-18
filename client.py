@@ -54,7 +54,7 @@ def user_menu():
 
 
 # Change the ip address port location in the server
-proxy = xmlrpc.client.ServerProxy("http://localhost:8000")
+proxy = xmlrpc.client.ServerProxy("http://192.168.1.13:8000")
 
 # Get computer client hostname and date
 host_id = str(socket.gethostname())
@@ -125,10 +125,10 @@ while(choice != '7'):
         except xmlrpc.client.Fault as err:
             print("File failed to delete!")
     elif (choice == '7'):
+        title_bar(host_id)
+        print("Thank you for using this application")
         # Delete files after client exit the program
         try:
             proxy.remove_files(date, host_id)
         except xmlrpc.client.Fault as err:
             print("File has already deleted!")
-        title_bar(host_id)
-        print("Thank you for using this application")

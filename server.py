@@ -125,7 +125,7 @@ def remove_files(date, host_id):
 
 # Main Server Program
 # Change the ip address and port if necessary    
-server = SimpleXMLRPCServer(('localhost', 8000), allow_none=True)
+server = SimpleXMLRPCServer(('192.168.1.13', 8000), allow_none=True)
 print('Listening on port 8000')
 
 server.register_function(image_upload, 'image_upload')
