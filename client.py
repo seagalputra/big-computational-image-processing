@@ -121,12 +121,14 @@ while(choice != '7'):
     elif (choice == '6'):
         # Delete files in server-side
         try:
-            proxy.remove_files(date, host_id);
-        except:
-            print("Gambar gagal dihapus!")
+            proxy.remove_files(date, host_id)
+        except xmlrpc.client.Fault as err:
+            print("File failed to delete!")
     elif (choice == '7'):
+        # Delete files after client exit the program
+        try:
+            proxy.remove_files(date, host_id)
+        except xmlrpc.client.Fault as err:
+            print("File has already deleted!")
         title_bar(host_id)
         print("Thank you for using this application")
-        # Delete files after client exit the program
-        if (os.path.isfile(date+host_id+'.jpg')):
-            proxy.remove_files(date, host_id)

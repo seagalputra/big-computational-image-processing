@@ -22,6 +22,7 @@ from skimage import io
 from skimage import transform
 from skimage import color
 from skimage import filters
+from skimage import img_as_uint
 
 def image_upload(filedata, date, host_id):
     """Function for uploading image from client program to server
@@ -107,10 +108,10 @@ def imthresh(date, host_id):
 
     image = io.imread(date+host_id+'.jpg')
     gray = color.rgb2gray(image)
-    thresh = filters.threshold_mean(gray)
+    thresh = filters.threshold_otsu(gray)
     binary = gray > thresh
     print("Image successfully threshold!")
-    io.imsave(date+host_id+'.jpg', binary)
+    io.imsave(date+host_id+'.jpg', img_as_uint(binary))
 
 def remove_files(date, host_id):
     """Function to remove image files
